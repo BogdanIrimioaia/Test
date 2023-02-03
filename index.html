@@ -1,0 +1,59 @@
+<select id="country-list">
+  <option value="">Select a country</option>
+  <option value="ukraine">Ukraine</option>
+  <option value="poland">Poland</option>
+  <option value="iraq">Iraq</option>
+  <option value="morocco">Morocco</option>
+  <option value="venezuela">Venezuela</option>
+</select>
+
+<div id="country-info">
+  <p id="religion"></p>
+  <p id="geo-form"></p>
+</div>
+#country-info {
+  display: none;
+}
+const countryList = document.getElementById("country-list");
+const religion = document.getElementById("religion");
+const geoForm = document.getElementById("geo-form");
+
+countryList.addEventListener("change", function() {
+  const selectedCountry = countryList.value;
+  let countryReligion, countryGeoForm;
+
+  switch (selectedCountry) {
+    case "ukraine":
+      countryReligion = "Eastern Orthodox Christianity";
+      countryGeoForm = "Plains and Plateaus";
+      break;
+    case "poland":
+      countryReligion = "Catholicism";
+      countryGeoForm = "Lowlands";
+      break;
+    case "iraq":
+      countryReligion = "Islam (Shia and Sunni)";
+      countryGeoForm = "Desert and Semi-desert";
+      break;
+    case "morocco":
+      countryReligion = "Islam";
+      countryGeoForm = "Coastal Plains, Plateaus and Mountains";
+      break;
+    case "venezuela":
+      countryReligion = "Christianity (predominantly Roman Catholicism)";
+      countryGeoForm = "Coastal Lowlands, Andes Mountains";
+      break;
+    default:
+      countryReligion = "";
+      countryGeoForm = "";
+  }
+
+  religion.innerHTML = `Dominant religion: ${countryReligion}`;
+  geoForm.innerHTML = `Dominant geographic form: ${countryGeoForm}`;
+
+  if (selectedCountry) {
+    document.getElementById("country-info").style.display = "block";
+  } else {
+    document.getElementById("country-info").style.display = "none";
+  }
+});
